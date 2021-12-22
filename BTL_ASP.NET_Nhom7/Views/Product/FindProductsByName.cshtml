@@ -1,0 +1,115 @@
+﻿<style>
+    .left-side {
+        width: 25%;
+        background-color: #f6f4f4;
+        padding: 10px;
+        float: left;
+    }
+</style>
+<script>
+    function submit() {
+
+    }
+</script>
+@{
+    ViewBag.Title = "ListAllProducts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var findProductsByName = (List<BTL_ASP.NET_Nhom7.Models.Product>)ViewBag.findProductsByName;
+    var find = (List<BTL_ASP.NET_Nhom7.Models.Product>)ViewBag.find;
+}
+<div class="content">
+    <form method="post" action="/Product/Find" id="frm">
+        <section class="left-side">
+            <h3 style="font-weight:bold; margin:5px 0px;">Giá</h3>
+            <ul>
+                <li><input onchange="document.getElementById('frm').submit()" type="radio" name="price_range" value="500000" id="price_range1"><label for="price_range1">0 - 500.000đ</label></li>
+                <li><input onchange="document.getElementById('frm').submit()" type="radio" name="price_range" value="1000000" id="price_range2"><label for="price_range2">500,000đ - 1.000.000đ</label></li>
+                <li><input onchange="document.getElementById('frm').submit()" type="radio" name="price_range" value="3000000" id="price_range3"><label for="price_range3">1.000.000đ - 3.000.000đ</label></li>
+                <li><input onchange="document.getElementById('frm').submit()" type="radio" name="price_range" value="3000001" id="price_range4"><label for="price_range4">Trên 3.000.000đ</label></li>
+            </ul>
+
+        </section>
+        <section class="left-side" style="margin-left:5px">
+            <h3 style="font-weight:bold; margin: 5px 0px;">Thể tích</h3>
+
+            <ul>
+                <li><input onchange="document.getElementById('frm').submit()" type="checkbox" name="volume" value="500" id="volume1"><label for="volume1">500 ml</label></li>
+                <li><input onchange="document.getElementById('frm').submit()" type="checkbox" name="volume" value="750" id="volume2"><label for="volume2">750 ml</label></li>
+                <li><input onchange="document.getElementById('frm').submit()" type="checkbox" name="volume" value="1000" id="volume3"><label for="volume3">1000 ml</label></li>
+                <li><input onchange="document.getElementById('frm').submit()" type="checkbox" name="volume" value="1001" id="volume4"><label for="volume4">Trên 1000 ml</label></li>
+            </ul>
+        </section>
+        <section class="left-side" style="margin-left:5px">
+            <h3 style="font-weight:bold; margin: 5px 0px;">Năm rượu</h3>
+
+            <ul>
+                <li><input onchange="document.getElementById('frm').submit()" type="checkbox" name="year" value="2" id="volume1"><label for="volume1"> ~ 2 năm</label></li>
+                <li><input onchange="document.getElementById('frm').submit()" type="checkbox" name="year" value="5" id="volume2"><label for="volume2"> ~ 5 năm</label></li>
+                <li><input onchange="document.getElementById('frm').submit()" type="checkbox" name="year" value="10" id="volume3"><label for="volume3"> ~ 10 năm </label></li>
+                <li><input onchange="document.getElementById('frm').submit()" type="checkbox" name="year" value="20" id="volume4"><label for="volume4">~ 20 năm</label></li>
+            </ul>
+        </section>
+    </form>
+    <div class="clear"></div>
+    <div><h3 style="text-align:center; margin-top:20px">Danh sách sản phẩm là @ViewBag.searchString</h3></div>
+    @try
+    {
+        <div class="section group">
+            @foreach (var i in findProductsByName)
+            {
+                <div class="grid_1_of_4 images_1_of_4">
+                    <a href="/product/details/@i.ProductId"><img src="~/Assets/User/images/@i.Image" alt="" /></a>
+                    <h2>@i.ProductName </h2>
+                    <div class="price-details">
+                        <div class="price-number">
+                            <p><span class="rupees">@(i.PurchasePrice.HasValue?i.PurchasePrice.Value.ToString("N0"):"Liên Hệ") VNĐ</span></p>
+                        </div>
+                        <div class="add-cart">
+                            <h4><a href="/them-gio-hang?productId=@i.ProductId&quantity=1">Thêm vào giỏ</a></h4>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+
+            }
+        </div>
+        if (findProductsByName.Count == 0)
+        {
+            <div class="alert alert-danger"><h3 style="text-align:center">Không có sản phẩm nào là @ViewBag.searchString</h3></div>
+        }
+
+    }
+    catch (Exception)
+    {
+
+    }
+    @try
+    {
+        <div class="section group">
+            @foreach (var i in find)
+            {
+                <div class="grid_1_of_4 images_1_of_4">
+                    <a href="/product/details/@i.ProductId"><img src="~/Assets/User/images/@i.Image" alt="" /></a>
+                    <h2>@i.ProductName </h2>
+                    <div class="price-details">
+                        <div class="price-number">
+                            <p><span class="rupees">@(i.PurchasePrice.HasValue?i.PurchasePrice.Value.ToString("N0"):"Liên Hệ") VNĐ</span></p>
+                        </div>
+                        <div class="add-cart">
+                            <h4><a href="/them-gio-hang?productId=@i.ProductId&quantity=1">Thêm vào giỏ</a></h4>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    }
+    catch (Exception)
+    {
+
+    }
+
+
+</div>
+

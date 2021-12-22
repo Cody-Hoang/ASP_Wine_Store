@@ -1,0 +1,60 @@
+﻿@model PagedList.IPagedList<BTL_ASP.NET_Nhom7.Models.Catalogy>
+@using PagedList.Mvc
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+
+@section header{
+    List All Catalogies
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+        </h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <tr>
+                    <th>
+                        Catalogy Name
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CatalogyName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.CatalogyId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.CatalogyId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.CatalogyId })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            <br />
+            Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+
+        </div>
+    </div>
+</div>

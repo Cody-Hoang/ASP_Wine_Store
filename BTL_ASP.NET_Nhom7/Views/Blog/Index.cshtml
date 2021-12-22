@@ -1,0 +1,32 @@
+﻿@model PagedList.IPagedList<BTL_ASP.NET_Nhom7.Models.Blog>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #pWebkit {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+</style>
+<div class="content">
+    @foreach (var item in Model)
+    {
+        <div class="image group">
+            <div class="grid images_3_of_1">
+                <img src="~/Assets/User/images/@item.Image" alt="">
+            </div>
+            <div class="grid news_desc">
+                <h3><a href="/Blog/Details?BlogId=@item.BlogId">@item.Title </a> </h3>
+                <h4>@item.CreateDate </h4>
+                <p id="pWebkit">@item.Content</p>
+            </div>
+        </div>
+    }
+    
+</div>
+

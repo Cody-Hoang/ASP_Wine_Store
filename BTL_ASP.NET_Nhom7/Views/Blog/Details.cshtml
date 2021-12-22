@@ -1,0 +1,9 @@
+﻿@model BTL_ASP.NET_Nhom7.Models.Blog
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2 style="font-weight:bold; text-align:center;padding:20px 0px;">@Model.Title</h2>
+<img style="width:50%;display:block; margin:0 auto" src="~/Assets/User/images/@Model.Image" />
+<p style="margin-top:20px; text-align:justify">@Model.Content</p>
+

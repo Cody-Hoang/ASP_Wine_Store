@@ -1,0 +1,59 @@
+﻿@model List<BTL_ASP.NET_Nhom7.Models.Custom.CartItem>
+<link rel                                                                                                                                           ="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section jsFooter{
+
+        <script src="/Assets/User/js/controller/cartController.js"></script>
+    }
+<div class="content">
+    <div class="section group">
+
+        @if (Model.Count > 0)
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>Mã</td>
+                        <td>Tên Sản Phẩm</td>
+                        <td>Ảnh </td>
+                        <td>Số lượng</td>
+                        <td>Đơn giá</td>
+                        <td>Thành tiền</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Product.ProductId</td>
+                            <td>@item.Product.ProductName</td>
+                            <td><img src="~/Assets/User/images/@item.Product.Image" width="100" /></td>
+                            <td><input type="text" class="txtQuantity" data-id="@item.Product.ProductId" value="@item.Quantity" /></td>
+                            <td>@item.Product.PurchasePrice.GetValueOrDefault(0).ToString("N0")</td>
+                            <td>@((item.Product.PurchasePrice.GetValueOrDefault(0) * item.Quantity).ToString("N0"))</td>
+                            <td><a href="#" data-id="@item.Product.ProductId" class="btn btn-danger btn-del">Xoá</a></td>
+                        </tr>
+                    }
+                        <tr>
+                            <td colspan="5">Số tiền cần thanh toán: </td>
+                            <td colspan="2">@ViewBag.Total</td>
+                        </tr>
+
+                </tbody>
+            </table>
+
+            <button id="btnContinue" class="btn btn-primary">Tiếp tục mua hàng</button>
+            <button id="btnUpdate" class="btn btn-warning">Cập nhật giỏ hàng</button>
+            <button id="btnDeleteAll" class="btn btn-danger">Xoá giỏ hàng</button>
+            <button id="btnPayment" class="btn btn-success">Thanh toán</button>
+        }
+        else
+        {
+            <span class="alert alert-danger">Giỏ hàng trống</span>
+        }
+</div>
+</div>

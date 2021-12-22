@@ -1,0 +1,98 @@
+﻿@model List<BTL_ASP.NET_Nhom7.Models.Custom.CartItem>
+@*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">*@
+@{
+    var customSession = (BTL_ASP.NET_Nhom7.Common.UserLogin)Session[BTL_ASP.NET_Nhom7.Common.CommonConstants.USER_SESSION_CUSTOM];
+    ViewBag.Title = "Thanh toán";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="section group">
+
+        @if (Model.Count > 0)
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>Mã</td>
+                        <td>Tên Sản Phẩm</td>
+                        <td>Ảnh </td>
+                        <td>Số lượng</td>
+                        <td>Đơn giá</td>
+                        <td>Thành tiền</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Product.ProductId</td>
+                            <td>@item.Product.ProductName</td>
+                            <td><img src="~/Assets/User/images/@item.Product.Image" width="100" /></td>
+                            <td><input type="text" class="txtQuantity" data-id="@item.Product.ProductId" value="@item.Quantity" /></td>
+                            <td>@item.Product.PurchasePrice.GetValueOrDefault(0).ToString("N0")</td>
+                            <td>@((item.Product.PurchasePrice.GetValueOrDefault(0) * item.Quantity).ToString("N0"))</td>
+                            <td><a href="#" data-id="@item.Product.ProductId" class="btn btn-danger btn-del">Xoá</a></td>
+                        </tr>
+                    }
+                    <tr>
+                        <td colspan="5">Số tiền cần thanh toán: </td>
+                        <td colspan="2">@ViewBag.Total</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        }
+
+    </div>
+    <div class="section group">
+        @if (customSession == null)
+        {
+            using (Html.BeginForm("Payment", "Cart", FormMethod.Post))
+            {
+                <div class="form-group">
+                    <label>Người nhận</label>
+                    <input name="shipName" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Điện thoại</label>
+                    <input name="mobile" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Địa chỉ</label>
+                    <input name="address" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input name="email" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn-success">Gửi đơn hàng</button>
+            }
+        }
+        else
+        {
+            using (Html.BeginForm("Payment", "Cart", FormMethod.Post))
+            {
+                <div class="form-group">
+                    <label>Người nhận</label>
+                    <input name="shipName" class="form-control" value="@customSession.UserName"/>
+                </div>
+                <div class="form-group">
+                    <label>Điện thoại</label>
+                    <input name="mobile" class="form-control" value="@customSession.Phone"/>
+                </div>
+                <div class="form-group">
+                    <label>Địa chỉ</label>
+                    <input name="address" class="form-control" value="@customSession.Address" />
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input name="email" class="form-control" value="@customSession.Email"/>
+                </div>
+                <button type="submit" class="btn btn-success">Gửi đơn hàng</button>
+            }
+
+        }
+    </div>
+</div>

@@ -1,0 +1,11 @@
+﻿@model List<BTL_ASP.NET_Nhom7.Models.Catalogy>
+<div class="categories">
+    <ul>
+        <h3 style="font-size:15px; text-align:center">Danh mục sản phẩm</h3>
+        @foreach(var i in Model)
+            {
+            <li style="font-size:18px"><a href="/Product/Catalogy?cataId=@i.CatalogyId">@i.CatalogyName</a></li>
+            }
+
+    </ul>
+</div>

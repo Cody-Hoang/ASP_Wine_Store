@@ -1,0 +1,66 @@
+﻿<style>
+    .sform {
+        width: fit-content;
+        margin: 0 auto;
+        border:1px solid black;
+        border-radius:5px;
+    }
+
+        .sform li input {
+            margin-top: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid black;
+            padding: 3px 10px;
+        }
+
+    #btnSubmit {
+        background-color: #5cb85c;
+        color: white;
+        margin-bottom: 20px;
+    }
+
+        #btnSubmit:hover {
+            opacity: 0.8;
+        }
+
+    .content h4 {
+        text-align: center;
+        font-weight:bold;
+    }
+
+    .sform {
+        padding: 5px 20px;
+        border: 1px solid black;
+    }
+</style>
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content">
+    @using (Html.BeginForm("Login", "User", FormMethod.Post, htmlAttributes: new { @class = "sform" }))
+    {
+        <h4>Đăng nhập</h4>
+        @Html.AntiForgeryToken()
+        <ul>
+            <li>
+                <input name="username" type="text" class="tb validate[required]" id="username" placeholder="Tên đăng nhập" value="" required>
+            </li>
+            <li><input name="password" type="password" class="tb validate[required]" id="password" placeholder="Mật khẩu" value="" required></li>
+            <li class="btns"><input name="submit" type="submit" id="btnSubmit" class="htmlBtn first" value="Đăng nhập"></li>
+        </ul>
+    }
+
+</div>
+@if (ViewBag.Success != null)
+{
+    <div class="alert alert-success"><h4 style="text-align:center">@ViewBag.Success</h4></div>
+
+}
+@if(ViewBag.Error != null)
+{
+    <div class="alert alert-danger"><h4 style="text-align:center">@ViewBag.Error</h4></div>
+}
+
+
