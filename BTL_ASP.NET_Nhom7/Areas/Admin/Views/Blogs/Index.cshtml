@@ -5,10 +5,9 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
 }
 
-<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Tạo mới", "Create")
 </p>
 <table class="table">
     <tr>
@@ -51,9 +50,9 @@
             @Html.DisplayFor(modelItem => item.ModifiedDate)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BlogId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BlogId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BlogId })
+            @Html.ActionLink("Sửa", "Edit", new { id=item.BlogId }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.BlogId }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.BlogId })
         </td>
     </tr>
 }

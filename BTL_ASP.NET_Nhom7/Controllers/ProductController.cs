@@ -54,8 +54,19 @@ namespace BTL_ASP.NET_Nhom7.Controllers
         public ActionResult FindProductsByName(string searchString)
         {
             db = new WineStoreDB();
+            if(searchString.Contains("-"))
+            {
+                decimal fromPrice =Convert.ToDecimal( searchString.Split('-')[0]);
+                decimal toPrice =Convert.ToDecimal( searchString.Split('-')[1]);
+                ViewBag.findProductsByName = db.Product.Where(x =>x.PurchasePrice >= fromPrice && x.PurchasePrice <= toPrice).ToList();
+
+            }
+            else
+            {
             ViewBag.findProductsByName = db.Product.Where(x => x.ProductName.Contains(searchString)).ToList();
             ViewBag.searchString = searchString;
+
+            }    
             return View();
         }
         public ActionResult Find(string price_range, string volume)

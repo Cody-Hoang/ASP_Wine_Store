@@ -18,32 +18,43 @@ namespace BTL_ASP.NET_Nhom7.Models
         public int UserId { get; set; }
 
         [Required]
-        [Display(Name ="User Name")]
+        [Display(Name ="Tên")]
         [StringLength(50)]
         public string UserName { get; set; }
 
         [Required]
         [StringLength(255)]
+        [Display(Name = "Email")]
+
         public string Email { get; set; }
 
         [StringLength(15)]
+        [Display(Name = "Số điện thoại")]
+
         public string Phone { get; set; }
 
         [Required]
         [StringLength(50)]
+        [Display(Name = "Mật khẩu")]
+
         public string Password { get; set; }
 
         [StringLength(255)]
+        [Display(Name = "Địa chỉ")]
+
         public string Address { get; set; }
+        [Display(Name = "Trạng thái")]
 
         public bool? Status { get; set; }
 
-        [Display(Name ="Create Date")]
+        [Display(Name ="Ngày tạo")]
         public DateTime? CreateDate { get; set; }
 
-        [Display(Name = "Modified Date")]
+        [Display(Name = "Ngày cập nhật")]
 
         public DateTime? ModifiedDate { get; set; }
+        [Display(Name = "Mã nhóm")]
+
         public int GroupId { get; set; }
 
         public virtual GroupUsers GroupUsers { get; set; }

@@ -2,8 +2,143 @@
 @{
     ViewBag.Title = "Trang chủ";
     Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
-}
-@section header{
-Trang chủ    
+    var hotSell = ViewBag.HotSell as List<BTL_ASP.NET_Nhom7.Models.Product>;
 }
 
+<p>3 sản phẩm bán chạy</p>
+@foreach (var item in hotSell)
+{
+    <div style="width:33%">
+        <a href="/admin/products/details/@item.ProductId">
+            <span>@item.ProductName</span>
+        </a>
+    </div>
+}
+
+
+<div class="row" style="margin-top:24px">
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Tổng khách hàng:
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.ToTalCustomers</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Tổng hóa đơn:
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.ToTalOrders </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                            Tổng sản phẩm đã bán
+                        </div>
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">@ViewBag.ToTalProductWasSell+</div>
+                            </div>
+                            <div class="col">
+                                <div class="progress progress-sm mr-2">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pending Requests Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            Tổng sản phẩm đang bày bán:
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.ToTalProduct</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-comments fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 mb-4">
+        <div class="card bg-primary text-white shadow">
+            <div class="card-body">
+                Doanh thu tháng này :  @ViewBag.ThisMonthIncome VNĐ
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+
+
+</div>
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-3">
+            <label for="date_start">Từ ngày</label>
+            @Html.TextBox("start", null, new { @type = "date", @class = "form-control" })
+        </div>
+        <div class="col-md-3">
+            <label for="date_end">Đến ngày</label>
+            @Html.TextBox("end", null, new { @type = "date", @class = "form-control" })
+        </div>
+        <div class="col-md-2">
+            <label for="date_end" style="visibility:hidden">End Date</label>
+            <input type="submit" class="btn btn-primary btn-block" value="Tính doanh thu">
+        </div>
+    </div>
+}
+<div class="row" style="margin-top:24px">
+    <div class="col-lg-12 mb-4">
+        <div class="card bg-primary text-white shadow">
+            <div class="card-body">
+                 Doanh thu :  @ViewBag.CalculateIncome VNĐ
+            </div>
+        </div>
+    </div>
+</div>

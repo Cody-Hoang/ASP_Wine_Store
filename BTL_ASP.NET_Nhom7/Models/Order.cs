@@ -14,16 +14,26 @@ namespace BTL_ASP.NET_Nhom7.Models
         {
             OrderDetails = new HashSet<OrderDetails>();
         }
-
+        [Key]
+        [Required]
+        [Display(Name ="Mã hóa đơn")]
         public int OrderId { get; set; }
+        [Display(Name = "Trạng thái")]
+
 
         public bool? Status { get; set; }
+        [Display(Name = "Ngày tạo")]
 
         public DateTime? CreateDate { get; set; }
+        [Display(Name = "Ngày cập nhật")]
+
 
         public DateTime? ModifiedDate { get; set; }
+        [Display(Name ="Mã khách hàng")]
 
         public int UserId { get; set; }
+        [Display(Name = "Khách hàng")]
+
 
         public virtual User User { get; set; }
 

@@ -84,4 +84,10 @@ D:\_ky7\ASP\btl\BTL_ASP.NET_Nhom7\BTL_ASP.NET_Nhom7\bin\PagedList.dll
 D:\_ky7\ASP\btl\BTL_ASP.NET_Nhom7\BTL_ASP.NET_Nhom7\bin\PagedList.Mvc.dll
 D:\_ky7\ASP\btl\BTL_ASP.NET_Nhom7\BTL_ASP.NET_Nhom7\bin\PagedList.xml
 D:\_ky7\ASP\btl\BTL_ASP.NET_Nhom7\BTL_ASP.NET_Nhom7\bin\PagedList.Mvc.xml
+D:\_ky7\ASP\btl\BTL_ASP.NET_Nhom7\BTL_ASP.NET_Nhom7\bin\AutoMapper.dll
+D:\_ky7\ASP\btl\BTL_ASP.NET_Nhom7\BTL_ASP.NET_Nhom7\bin\AutoMapper.EF6.dll
+D:\_ky7\ASP\btl\BTL_ASP.NET_Nhom7\BTL_ASP.NET_Nhom7\bin\DelegateDecompiler.dll
+D:\_ky7\ASP\btl\BTL_ASP.NET_Nhom7\BTL_ASP.NET_Nhom7\bin\DelegateDecompiler.EntityFramework.dll
+D:\_ky7\ASP\btl\BTL_ASP.NET_Nhom7\BTL_ASP.NET_Nhom7\bin\Mono.Reflection.dll
+D:\_ky7\ASP\btl\BTL_ASP.NET_Nhom7\BTL_ASP.NET_Nhom7\bin\AutoMapper.xml
 D:\_ky7\ASP\btl\BTL_ASP.NET_Nhom7\BTL_ASP.NET_Nhom7\obj\Debug\BTL_ASP.NET_Nhom7.csproj.AssemblyReference.cache

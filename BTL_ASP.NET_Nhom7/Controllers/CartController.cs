@@ -54,6 +54,7 @@ namespace BTL_ASP.NET_Nhom7.Controllers
         {
             if(Session[CommonConstants.USER_SESSION_CUSTOM] == null)
             {
+                return Redirect("/dang-ky");
                 var user = new User();
                 user.UserName = shipName;
                 user.Phone = mobile;

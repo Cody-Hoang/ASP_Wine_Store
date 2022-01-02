@@ -11,14 +11,22 @@ namespace BTL_ASP.NET_Nhom7.Models
         [Key]
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Display(Name = "Mã hóa đơn")]
+
         public int OrderId { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Display(Name = "Mã sản phẩm")]
+
         public int ProductId { get; set; }
+        [Display(Name = "Số lượng")]
+
 
         public int? Quantity { get; set; }
+        [Display(Name = "Giảm giá")]
+
 
         public int? Discount { get; set; }
 

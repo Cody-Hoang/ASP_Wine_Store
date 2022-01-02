@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BTL_ASP.NET_Nhom7.Models;
+using PagedList;
 
 namespace BTL_ASP.NET_Nhom7.Areas.Admin.Controllers
 {
@@ -15,12 +16,21 @@ namespace BTL_ASP.NET_Nhom7.Areas.Admin.Controllers
         private WineStoreDB db = new WineStoreDB();
 
         // GET: Admin/Orders
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var order = db.Order.Include(o => o.User);
-            return View(order.ToList());
+            var order = db.Order.Include(o => o.User).ToList();
+            int pageSize = 8;
+            int pageNumber = (page ?? 1);
+            return View(order.ToPagedList(pageNumber, pageSize));
         }
-
+        [HttpPost]
+        public ActionResult Index(int? page, string search)
+        {
+            var order = db.Order.Where(o=>o.User.UserName.Contains(search) || o.OrderId.ToString() == search).ToList();
+            int pageSize = 8;
+            int pageNumber = (page ?? 1);
+            return View(order.ToPagedList(pageNumber, pageSize));
+        }
         // GET: Admin/Orders/Details/5
         public ActionResult Details(int? id)
         {
@@ -29,6 +39,8 @@ namespace BTL_ASP.NET_Nhom7.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Order order = db.Order.Find(id);
+            ViewBag.OrderDetails = db.OrderDetails.Where(x => x.OrderId == id).ToList();
+            ViewBag.TotalPrice = Convert.ToDecimal( db.OrderDetails.Where(x => x.OrderId == id).Sum(x => x.Product.PurchasePrice * x.Quantity)).ToString("###,###");
             if (order == null)
             {
                 return HttpNotFound();

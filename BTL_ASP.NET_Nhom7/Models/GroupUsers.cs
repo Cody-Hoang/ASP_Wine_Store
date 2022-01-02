@@ -15,10 +15,14 @@ namespace BTL_ASP.NET_Nhom7.Models
         }
 
         [Key]
+        [Required]
+        [Display(Name ="Mã nhóm")]
         public int GroupId { get; set; }
 
         [Required]
         [StringLength(50)]
+        [Display(Name = "Tên nhóm")]
+
         public string GroupName { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

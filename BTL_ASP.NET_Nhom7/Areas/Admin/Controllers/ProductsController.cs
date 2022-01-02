@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BTL_ASP.NET_Nhom7.Models;
+using PagedList;
 
 namespace BTL_ASP.NET_Nhom7.Areas.Admin.Controllers
 {
@@ -15,10 +16,12 @@ namespace BTL_ASP.NET_Nhom7.Areas.Admin.Controllers
         private WineStoreDB db = new WineStoreDB();
 
         // GET: Admin/Products
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var product = db.Product.Include(p => p.Catalogy);
-            return View(product.ToList());
+            var product = db.Product.Include(p => p.Catalogy).ToList();
+            int pageSize = 4;
+            int pageNumber = (page ?? 1);
+            return View(product.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Admin/Products/Details/5

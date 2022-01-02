@@ -3,14 +3,21 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+    var orderDetails = ViewBag.OrderDetails as List<BTL_ASP.NET_Nhom7.Models.OrderDetails>;
 }
 
-<h2>Details</h2>
+<h2>Chi tiết hóa đơn</h2>
 
 <div>
-    <h4>Order</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            Mã hóa đơn
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OrderId)
+
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.User.UserName)
         </dt>
@@ -19,19 +26,21 @@
             @Html.DisplayFor(model => model.User.UserName)
         </dd>
         <dt>
-            Order Id
+            Điện thoại
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.OrderId)
+            @Html.DisplayFor(model => model.User.Phone)
 
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Status)
+            Địa chỉ
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Status)
+            @Html.DisplayFor(model => model.User.Address)
+
         </dd>
+
+
 
         <dt>
             @Html.DisplayNameFor(model => model.CreateDate)
@@ -40,18 +49,17 @@
         <dd>
             @Html.DisplayFor(model => model.CreateDate)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.ModifiedDate)
+            Sản phẩm đã đặt:
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ModifiedDate)
-        </dd>
+        @foreach (var item in orderDetails)
+        {
+            <dd>@item.Product.ProductName : @item.Quantity sản phẩm</dd>
+        }
+        <dd>Tổng tiền: @ViewBag.TotalPrice VNĐ</dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Quay lại", "Index")
 </p>

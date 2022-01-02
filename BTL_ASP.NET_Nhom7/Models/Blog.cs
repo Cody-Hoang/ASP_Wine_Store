@@ -9,18 +9,30 @@ namespace BTL_ASP.NET_Nhom7.Models
     [Table("Blog")]
     public partial class Blog
     {
+        [Key]
+        [Display(Name ="Mã bài viết")]
         public int BlogId { get; set; }
 
         [StringLength(50)]
-        public string Title { get; set; }
+        [Display(Name = "Tiêu đề")]
 
-        [StringLength(255)]
+        public string Title { get; set; }
+        [Display(Name = "Nội dung")]
+
+
+        [Column(TypeName = "ntext")]
         public string Content { get; set; }
 
         [StringLength(50)]
+        [Display(Name = "Ảnh")]
+
         public string Image { get; set; }
+        [Display(Name = "Ngày tạo")]
+
 
         public DateTime? CreateDate { get; set; }
+        [Display(Name = "Ngày sửa")]
+
 
         public DateTime? ModifiedDate { get; set; }
     }

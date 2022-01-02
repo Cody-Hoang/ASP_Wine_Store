@@ -14,18 +14,27 @@ namespace BTL_ASP.NET_Nhom7.Models
         {
             Product = new HashSet<Product>();
         }
-
+        [Key]
+        [Required]
+        [Display(Name ="Mã bài viết")]
         public int CatalogyId { get; set; }
 
         [StringLength(50)]
+        [Display(Name = "Tên")]
+
         public string CatalogyName { get; set; }
 
-        [StringLength(255)]
+        [Display(Name = "Mô tả")]
+
+        [Column(TypeName = "ntext")]
         public string Description { get; set; }
+        [Display(Name = "Ngày tạo")]
 
         public DateTime? CreateDate { get; set; }
+        [Display(Name = "Ngày cập nhật")]
 
         public DateTime? ModifiedDate { get; set; }
+        [Display(Name = "Là mục cha")]
 
         public bool? ParentId { get; set; }
 

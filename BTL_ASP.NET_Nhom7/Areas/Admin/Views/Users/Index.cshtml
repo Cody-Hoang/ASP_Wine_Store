@@ -8,14 +8,14 @@
 
 
 @section header{
-    List All Users}
+    Danh sách người dùng}
 
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">
             <p>
-                @Html.ActionLink("Create New", "Create")
+                @Html.ActionLink("Tạo mới", "Create")
             </p>
         </h6>
     </div>
@@ -24,25 +24,25 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <tr>
                     <th>
-                        Gruop Name
+                        Nhóm
                     </th>
                     <th>
-                        User Name
+                        Tên người dùng
                     </th>
                     <th>
                         Email
                     </th>
                     <th>
-                        Phone
+                        Điện thoại
                     </th>
                     <th>
-                        Password
+                        Mật khẩu
                     </th>
                     <th>
-                        Address
+                        Địa chỉ
                     </th>
                     <th>
-                        Status
+                        Trạng thái
                     </th>
 
                     <th></th>
@@ -74,9 +74,9 @@
                         </td>
 
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.UserId })
-                            @Html.ActionLink("Details", "Details", new { id = item.UserId })
-                            @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+                            @Html.ActionLink("Sửa", "Edit", new { id = item.UserId })
+                            @Html.ActionLink("Chi tiết", "Details", new { id = item.UserId })
+                            @Html.ActionLink("Xóa", "Delete", new { id = item.UserId })
                         </td>
                     </tr>
                 }
